@@ -6,12 +6,14 @@ require_once('AccessMethods.php');
  * Http client used to perform requests on Eventbrite API.
  */
 
-
+require_once('AccessMethods.php');
+/**
+ * Http client used to perform requests on Eventbrite API.
+ */
 class HttpClient extends AccessMethods
 {
-
     protected $token;
-    const EVENTBRITE_APIv3_BASE = "https://www.eventbriteapi.com/v3"
+    const EVENTBRITE_APIv3_BASE = "https://www.eventbriteapi.com/v3";
 
     /**
      * Constructor.
@@ -22,27 +24,21 @@ class HttpClient extends AccessMethods
     {
         $this->token = $token;
     }
-
     public function get($path, array $body = array())
     {
         return $this->request($path, $body, $httpMethod = 'GET');
     }
-
     public function post($path, array $body = array())
     {
         return $this->request($path, $body, $httpMethod = 'POST');
     }
-
     public function delete($path, array $body = array())
     {
         return $this->request($path, $body, $httpMethod = 'DELETE');
     }
-
     public function request($path, $body, $httpMethod = 'GET')
     {
-
         $data = json_encode($body);
-
         // I think this is the only header we need.  If there is a need
         // to pass more headers to the request, we could add a parameter
         // called headers to this function and combine whatever headers are passed
@@ -57,14 +53,9 @@ class HttpClient extends AccessMethods
         );
 
         $url = self::EVENTBRITE_APIv3_BASE . $path . '?token=' . $this->token ;
-
         $context  = stream_context_create($options);
-
         $result = file_get_contents($url, false, $context);
-
         /* this is where we will handle connection errors. Eventbrite errors are a part of the response payload. We return errors as an associative array. */
         return json_decode($result, true);
-
-
     }
 }

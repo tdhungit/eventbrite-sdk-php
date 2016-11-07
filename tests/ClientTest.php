@@ -5,11 +5,10 @@ require_once('HttpClient.php');
 
 class ClientTest extends TestCase
 {
-    // ...
 
     public function testGetCategories()
     {
-        $client = new HttpClient('B53TQVE3ERGWJO3TGW5M');
+        $client = new HttpClient(getenv('TOKEN'));
         $categories = $client->get_categories();
 
         $this->assertInternalType('array', $categories);
@@ -25,7 +24,7 @@ class ClientTest extends TestCase
 
     public function testClient404()
     {
-        $client = new HttpClient('B53TQVE3ERGWJO3TGW5M');
+        $client = new HttpClient(getenv('TOKEN'));
         $event = $client->get_event(99999999999);
 
         $this->assertEquals($event['status_code'], 404);
@@ -34,10 +33,8 @@ class ClientTest extends TestCase
 
     public function testAccessMethods()
     {
-        $client = new HttpClient('B53TQVE3ERGWJO3TGW5M');
+        $client = new HttpClient(getenv('TOKEN'));
         $this->assertTrue(method_exists($client, 'get_event_canned_questions'));
     }
 
 }
-
-?>
