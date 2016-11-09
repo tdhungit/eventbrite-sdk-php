@@ -48,7 +48,7 @@ public function get_subcategory($id, $data=array()) {
 
 /**
 * get_event_search
-* GET /events/search/ 
+* GET /events/search/
 *        Allows you to retrieve a paginated response of public :format:`event` objects from across Eventbrite’s directory, regardless of which user owns the event.
 */
 public function get_event_search($data=array()) {
@@ -912,26 +912,6 @@ public function get_user_owned_events($id, $data=array()) {
 */
 public function get_user_events($id, $data=array()) {
     return $this->get(sprintf("/users/%d/events/", $id), $data=array());
-}
-
-
-/**
-* get_user_venues
-* GET /users/:id/venues/
-*        Returns a paginated response of :format:`venue` objects that are owned by the user.
-*/
-public function get_user_venues($id, $data=array()) {
-    return $this->get(sprintf("/users/%d/venues/", $id), $data=array());
-}
-
-
-/**
-* get_user_organizers
-* GET /users/:id/organizers/
-*        Returns a paginated response of :format:`organizer` objects that are owned by the user.
-*/
-public function get_user_organizers($id, $data=array()) {
-    return $this->get(sprintf("/users/%d/organizers/", $id), $data=array());
 }
 
 
