@@ -24,19 +24,19 @@ class HttpClient extends AccessMethods
     {
         $this->token = $token;
     }
-    public function get($path, array $body = array())
+    public function get($path, array $expand = array())
     {
-        return $this->request($path, $body, $httpMethod = 'GET');
+        return $this->request($path, array(), $expand, $httpMethod = 'GET');
     }
-    public function post($path, array $body = array())
+    public function post($path, array $data = array())
     {
-        return $this->request($path, $body, $httpMethod = 'POST');
+        return $this->request($path, $data, array(), $httpMethod = 'POST');
     }
-    public function delete($path, array $body = array())
+    public function delete($path, array $data = array())
     {
-        return $this->request($path, $body, $httpMethod = 'DELETE');
+        return $this->request($path, $data, array(), $httpMethod = 'DELETE');
     }
-    public function request($path, $body, $httpMethod = 'GET')
+    public function request($path, $body, $expand, $httpMethod = 'GET')
     {
         $data = json_encode($body);
         // I think this is the only header we need.  If there is a need
@@ -52,7 +52,13 @@ class HttpClient extends AccessMethods
             )
         );
 
-        $url = self::EVENTBRITE_APIv3_BASE . $path . '?token=' . $this->token ;
+        $url = self::EVENTBRITE_APIv3_BASE . $path . '?token=' . $this->token;
+
+        if (!empty($expand)) {
+            $expand_str = join(',', $expand);
+            $url = $url . '&expand=' . $expand_str;
+        }
+
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         /* this is where we will handle connection errors. Eventbrite errors are a part of the response payload. We return errors as an associative array. */
