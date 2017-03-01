@@ -3,6 +3,7 @@ eventbrite-sdk-php
 ==================
 
 Will add badges here once repo is public
+https://travis-ci.org/eventbrite/eventbrite-sdk-php.svg?branch=master
 
 * Official Eventbrite_ SDK for PHP
 * API Reference: https://developer.eventbrite.com/docs/
