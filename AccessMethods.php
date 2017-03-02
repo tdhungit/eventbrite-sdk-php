@@ -264,11 +264,11 @@ public function get_event_questions($id, $expand=array()) {
 
 /**
 * get_event_question
-* GET /events/:id/questions/:id/
+* GET /events/:id/questions/:question_id/
 *        This endpoint will return :format:`question` for a specific question id.
 */
-public function get_event_question($id, $id, $expand=array()) {
-    return $this->get(sprintf("/events/%s/questions/%s/", $id, $id), $expand=$expand);
+public function get_event_question($id, $question_id, $expand=array()) {
+    return $this->get(sprintf("/events/%s/questions/%s/", $id, $question_id), $expand=$expand);
 }
 
 
@@ -771,7 +771,13 @@ public function post_refund_request($id, $data=array()) {
 *        error NOT_AUTHORIZED
 *        Only the order's buyer can create a refund request
 *        error FIELD_UNKNOWN
-*        The order id provided is unknown*/
+*        The order id provided is unknown
+*        error EVENT_DOES_NOT_ALLOW_REFUND_REQUESTS
+*        According to organizer definition, the event does not allow the creation of refund requests.
+*        error EXISTING_REFUND_REQUEST_FOR_ORDER
+*        The order already has a refund request
+*        error INVALID_ORDER_STATE
+*        The order status is not allowed to request a refund. It must be placed.*/
 public function post_refund_requests($data=array()) {
     return $this->post(sprintf("/refund_requests/"), $data=$data);
 }
