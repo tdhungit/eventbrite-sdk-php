@@ -2,9 +2,9 @@
 eventbrite-sdk-php
 ==================
 
-Will add badges here once repo is public
 [![Build Status](https://travis-ci.org/eventbrite/eventbrite-sdk-php.svg?branch=master)](https://travis-ci.org/eventbrite/eventbrite-sdk-php)
 [![Latest Stable Version](https://poser.pugx.org/eventbrite/eventbrite-sdk-php/v/stable)](https://packagist.org/packages/eventbrite/eventbrite-sdk-php)
+[![Total Downloads](https://poser.pugx.org/eventbrite/eventbrite-sdk-php/downloads)](https://packagist.org/packages/eventbrite/eventbrite-sdk-php)
 
 * Official Eventbrite_ SDK for PHP
 * API Reference: https://developer.eventbrite.com/docs/
