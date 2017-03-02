@@ -459,21 +459,21 @@ public function get_event_teams($id, $expand=array()) {
 
 /**
 * get_event_team
-* GET /events/:id/teams/:id/
+* GET /events/:id/teams/:team_id/
 *        Returns information for a single :format:`teams`.
 */
-public function get_event_team($id, $id, $expand=array()) {
-    return $this->get(sprintf("/events/%s/teams/%s/", $id, $id), $expand=$expand);
+public function get_event_team($id, $team_id, $expand=array()) {
+    return $this->get(sprintf("/events/%s/teams/%s/", $id, $team_id), $expand=$expand);
 }
 
 
 /**
 * get_event_teams_attendees
-* GET /events/:id/teams/:id/attendees/
+* GET /events/:id/teams/:team_id/attendees/
 *        Returns :format:`attendees` for a single :format:`teams`.
 */
-public function get_event_teams_attendees($id, $id, $expand=array()) {
-    return $this->get(sprintf("/events/%s/teams/%s/attendees/", $id, $id), $expand=$expand);
+public function get_event_teams_attendees($id, $team_id, $expand=array()) {
+    return $this->get(sprintf("/events/%s/teams/%s/attendees/", $id, $team_id), $expand=$expand);
 }
 
 
