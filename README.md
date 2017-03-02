@@ -5,6 +5,8 @@ eventbrite-sdk-php
 [![Build Status](https://travis-ci.org/eventbrite/eventbrite-sdk-php.svg?branch=master)](https://travis-ci.org/eventbrite/eventbrite-sdk-php)
 [![Latest Stable Version](https://poser.pugx.org/eventbrite/eventbrite-sdk-php/v/stable)](https://packagist.org/packages/eventbrite/eventbrite-sdk-php)
 [![Total Downloads](https://poser.pugx.org/eventbrite/eventbrite-sdk-php/downloads)](https://packagist.org/packages/eventbrite/eventbrite-sdk-php)
+[![License](https://poser.pugx.org/eden/eventbrite/license)](https://packagist.org/packages/eden/eventbrite)
+[![Coverage Status](https://coveralls.io/repos/github/eventbrite/eventbrite-sdk-php/badge.svg?branch=master)](https://coveralls.io/github/eventbrite/eventbrite-sdk-php?branch=master)
 
 * Official Eventbrite_ SDK for PHP
 * API Reference: https://developer.eventbrite.com/docs/
