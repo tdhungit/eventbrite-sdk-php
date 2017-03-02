@@ -3,7 +3,7 @@
 require_once('HttpClient.php');
 
 #PHPUnit_Framework_TestCase is for v4.8
-class ClientTest extends PHPUnit_Framework_TestCase
+class ClientTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testGetCategories()
