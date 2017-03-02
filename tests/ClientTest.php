@@ -1,7 +1,6 @@
 <?php
 
 require_once('HttpClient.php');
-require_once 'PHPUnit/Autoload.php';
 
 #PHPUnit_Framework_TestCase is for v4.8
 class ClientTest extends \PHPUnit_Framework_TestCase
