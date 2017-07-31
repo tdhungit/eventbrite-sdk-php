@@ -62,6 +62,11 @@ class HttpClient extends AccessMethods
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         /* this is where we will handle connection errors. Eventbrite errors are a part of the response payload. We return errors as an associative array. */
-        return json_decode($result, true);
+        $response = json_decode($result, true);
+        if ($response == NULL) {
+            $response = array();
+        }
+        $response['response_headers'] = $http_response_header;
+        return $response;
     }
 }
