@@ -10,18 +10,25 @@
  */
 
 require_once __DIR__ . '/HttpClient.php';
+require_once __DIR__ . '/EventbriteBase.php';
+require_once __DIR__ . '/categories/EBUsers.php';
+require_once __DIR__ . '/categories/EBEvents.php';
+require_once __DIR__ . '/categories/EBOrders.php';
 
 class Eventbrite
 {
     private $client;
+    private $user;
+    private $event;
+    private $order;
 
-    /**
-     * Eventbrite constructor.
-     * @param $config
-     */
     public function __construct($config)
     {
         $this->client = new HttpClient($config['personal_token']);
+
+        $this->user = new EBUsers($this->client);
+        $this->event = new EBEvents($this->client);
+        $this->order = new EBOrders($this->client);
     }
 
     /**
@@ -33,104 +40,28 @@ class Eventbrite
     }
 
     /**
-     * @param $path api uri
-     * @param array $expand
-     * @return array|mixed
+     * @return EBEvents
      */
-    public function get($path, $expand = array())
+    public function getEvent()
     {
-        return $this->client->get($path, $expand);
+        return $this->event;
     }
 
     /**
-     * @param $path
-     * @param array $data
-     * @return array|mixed
+     * @return EBUsers
      */
-    public function post($path, $data = array())
+    public function getUser()
     {
-        return $this->client->post($path, $data);
+        return $this->user;
     }
 
     /**
-     * @param $path
-     * @param array $data
-     * @return array|mixed
+     * @return EBOrders
      */
-    public function delete($path, $data = array())
+    public function getOrder()
     {
-        return $this->client->delete($path, $data);
+        return $this->order;
     }
 
-    /**
-     * @param $path
-     * @param $body
-     * @param $expand
-     * @param string $httpMethod
-     * @return array|mixed
-     */
-    public function request($path, $body, $expand, $httpMethod = 'GET')
-    {
-        return $this->client->request($path, $body, $expand, $httpMethod);
-    }
 
-    /**
-     * get profile current user
-     * @return array|mixed
-     */
-    public function getProfile()
-    {
-        return $this->get('/users/me/');
-    }
-
-    /**
-     * create a event
-     * https://www.eventbrite.com/developer/v3/endpoints/events/#ebapi-post-events
-     * @param $event
-     * @Example $event = [
-        "event.name.html" => "Test Event 01",
-        "event.description.html" => "Test Event 01",
-        "event.start.timezone" => "America/Chicago",
-        "event.start.utc" => "2017-07-10T18:00:00Z", // format Y-m-d\TH:i:s\Z
-        "event.end.timezone" => "America/Chicago",
-        "event.end.utc" => "2017-07-10T20:00:00Z", // format Y-m-d\TH:i:s\Z
-        "event.currency" => "USD",
-       ];
-     * @return array|mixed
-     */
-    public function createEvent($event)
-    {
-        return $this->post('/events/', $event);
-    }
-
-    /**
-     * get detail a event
-     * @param $eventId
-     * @return array|mixed
-     */
-    public function getEvent($eventId)
-    {
-        return $this->get('/events/' . $eventId . '/');
-    }
-
-    /**
-     * Publishes an event
-     * @param $eventId
-     * @return array|mixed
-     */
-    public function publishEvent($eventId)
-    {
-        return $this->post('/events/' . $eventId . '/publish/');
-    }
-
-    /**
-     * get all attendees of event
-     * @param $eventId
-     * @return array|mixed
-     */
-    public function getAttendees($eventId)
-    {
-        echo $path = '/events/' . $eventId . '/attendees/';
-        return $this->get($path);
-    }
 }

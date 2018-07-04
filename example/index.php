@@ -16,9 +16,9 @@ $eventObject = new Eventbrite($config);
 
 echo '<pre>';
 
-//echo 'Current User:<br>';
-//$user = $eventObject->getProfile();
-//print_r($user);
+echo 'Current User:<br>';
+$user = $eventObject->getUser()->getProfile();
+print_r($user);
 
 //echo '<br><br>Create Event:<br>';
 //$event = [
@@ -31,11 +31,11 @@ echo '<pre>';
 //    "event.currency" => "USD",
 //];
 //print_r($event);
-//$createEvent = $eventObject->createEvent($event);
+//$createEvent = $eventObject->getEvent()->createEvent($event);
 //echo '<br>Result:<br>';
 //print_r($createEvent);
 
-echo '<br><br>Get Attendees:<br>';
-$attendees = $eventObject->getAttendees('47658505874');
-echo '<br>Result:<br>';
-print_r($attendees);
+//echo '<br><br>Get Attendees:<br>';
+//$attendees = $eventObject->getEvent()->getAttendees('47658505874');
+//echo '<br>Result:<br>';
+//print_r($attendees);
